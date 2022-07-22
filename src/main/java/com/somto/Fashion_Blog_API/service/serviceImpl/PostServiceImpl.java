@@ -5,7 +5,7 @@ import com.somto.Fashion_Blog_API.entity.CategoryEntity;
 import com.somto.Fashion_Blog_API.entity.PostEntity;
 import com.somto.Fashion_Blog_API.entity.UserEntity;
 import com.somto.Fashion_Blog_API.enums.UserRole;
-import com.emmanuela.Fashion_Blog_API.exceptions.*;
+import com.somto.Fashion_Blog_API.exceptions.*;
 import com.somto.Fashion_Blog_API.exceptions.CategoryNotFoundException;
 import com.somto.Fashion_Blog_API.exceptions.EmptyListException;
 import com.somto.Fashion_Blog_API.exceptions.PermissionDeniedException;
