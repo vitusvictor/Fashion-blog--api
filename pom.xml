@@ -8,7 +8,7 @@
 		<version>2.7.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.emmanuela</groupId>
+	<groupId>com.somto</groupId>
 	<artifactId>Fashion_Blog_API</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Fashion_Blog_API</name>
