@@ -27,12 +27,6 @@ public class UserServiceImpl implements UserService {
         }
         UserEntity users = new UserEntity();
         BeanUtils.copyProperties(signUpDto, users);
-//        UserEntity newUser = UserEntity.builder()
-//                .userName(signUpDto.getUserName())
-//                .email(signUpDto.getEmail())
-//                .password(signUpDto.getPassword())
-//                .userRole(UserRole.CUSTOMER)
-//                .build();
 
         return userRepository.save(users);
     }

@@ -20,7 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(UserController.class)
 class UserControllerTest {
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -32,9 +31,9 @@ class UserControllerTest {
     @BeforeEach
     void setUp() {
         user1 = UserEntity.builder()
-                .userName("Emmanuela")
-                .email("ella@gmail.com")
-                .password("12345")
+                .userName("Somto")
+                .email("somto@gmail.com")
+                .password("1234")
                 .userRole(UserRole.CUSTOMER)
                 .userId(1L)
                 .build();
@@ -42,24 +41,24 @@ class UserControllerTest {
     }
 
     @Test
-    @Disabled
+//    @Disabled
     void userSignUp() throws Exception {
         SignUpDto signUpDto = SignUpDto.builder()
-                .userName("Emmanuela")
-                .email("ella@gmail.com")
-                .password("12345")
+                .userName("Somto")
+                .email("somto@gmail.com")
+                .password("1234")
                 .userRole(UserRole.CUSTOMER)
                 .build();
 
         Mockito.when(userService.signUp(signUpDto))
                 .thenReturn(user1);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/users/sign_up")
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/signUp")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "    \"email\": \"ella@gmail.com\",\n" +
-                        "    \"password\": \"12345\",\n" +
-                        "    \"userName\": \"Emmanuela\",\n" +
+                        "    \"email\": \"somto@gmail.com\",\n" +
+                        "    \"password\": \"1234\",\n" +
+                        "    \"userName\": \"Somto\",\n" +
                         "    \"userRole\": \"CUSTOMER\"\n" +
                         "}"))
                 .andExpect(status().isOk());
@@ -69,8 +68,8 @@ class UserControllerTest {
 //    @Disabled
         void userLogin() throws Exception {
         LoginDto loginDto = LoginDto.builder()
-                .email("ella@gmail.com")
-                .password("12345")
+                .email("somto@gmail.com")
+                .password("1234")
                 .build();
 
         Mockito.when(userService.login(loginDto))
@@ -79,8 +78,8 @@ class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/users/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "    \"email\": \"ella@gmail.com\",\n" +
-                        "    \"password\": \"12345\"\n" +
+                        "    \"email\": \"somto@gmail.com\",\n" +
+                        "    \"password\": \"1234\"\n" +
                         "}"))
                 .andExpect(status().isOk());
         }
