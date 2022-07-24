@@ -22,6 +22,8 @@ public class CategoryEntity {
     private Long categoryId;
     @Column(nullable = false, unique = true, length = 50)
     private String categoryName;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<PostEntity> posts = new ArrayList<>();
+
+    // OneToMany -> ManyToMany
+    @ManyToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PostEntity> posts;
 }

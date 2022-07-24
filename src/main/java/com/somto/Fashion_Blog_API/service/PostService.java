@@ -6,7 +6,7 @@ import com.somto.Fashion_Blog_API.entity.PostEntity;
 import java.util.List;
 
 public interface PostService {
-    void createPost(PostDto postDto, Long categoryId);
+    void createPost(PostDto postDto);
 
     List<PostEntity> viewAllPosts();
 

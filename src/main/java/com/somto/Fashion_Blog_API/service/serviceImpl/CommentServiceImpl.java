@@ -37,6 +37,7 @@ public class CommentServiceImpl implements CommentService {
         Long id = sessionUtils.getLoggedInUser();
         UserEntity user = sessionUtils.findUserById(id);
 
+        // make admin able to comment
         if(!user.getUserRole().equals(UserRole.CUSTOMER))
             throw new PermissionDeniedException("You do not have the permission to access this page");
 
@@ -105,7 +106,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentDto> viewAllcommentByPost(Long postId) {
+    public List<CommentDto> viewAllCommentsByPost(Long postId) {
         PostEntity posts = postRepository.findById(postId)
                 .orElseThrow(() ->new PostsNotFoundException("This post is not available"));
 

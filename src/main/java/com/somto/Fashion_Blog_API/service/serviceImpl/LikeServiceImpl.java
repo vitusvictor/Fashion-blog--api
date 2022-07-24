@@ -26,7 +26,7 @@ public class LikeServiceImpl implements LikeService {
     private final UserService userService;
     private final PostRepository postRepository;
 
-    private  final SessionUtils sessionUtils;
+    private final SessionUtils sessionUtils;
 
     @Override
     public String  likeAPost(Long postId) {

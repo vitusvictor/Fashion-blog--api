@@ -19,9 +19,16 @@ public class PostController {
     private final PostService postService;
     private final CommentService commentService;
 
-    @PostMapping("/createPostBycategoryId/{id}")
-    public String createNewPost(@PathVariable("id") Long categoryId, @RequestBody PostDto postDto){
-        postService.createPost(postDto, categoryId);
+//    @PostMapping("/createPostBycategoryId/{id}")
+//    public String createNewPost(@PathVariable("id") Long categoryId, @RequestBody PostDto postDto){
+//        postService.createPost(postDto, categoryId);
+//
+//        return "Post created";
+//    }
+    @PostMapping("/createPostByCategoryId")
+    public String createNewPost(@RequestBody PostDto postDto){
+        postService.createPost(postDto);
+
         return "Post created";
     }
 
@@ -39,9 +46,10 @@ public class PostController {
     public ResponseEntity<List<PostDto>> viewAllPostByCategory(@PathVariable ("id") Long categoryId){
         return ResponseEntity.ok(postService.viewAllPostsByCategory(categoryId));
     }
+
     @GetMapping("/viewAllCommentsInAPost/{id}")
     public ResponseEntity<List<CommentDto>> viewAllCommentByPost(@PathVariable ("id") Long postId){
-        return ResponseEntity.ok(commentService.viewAllcommentByPost(postId));
+        return ResponseEntity.ok(commentService.viewAllCommentsByPost(postId));
     }
 
     @PostMapping("/updatePost/{id}")
@@ -49,7 +57,7 @@ public class PostController {
         return ResponseEntity.ok(postService.updatePost(postId, postDto));
     }
 
-    @DeleteMapping("/deletepost/{id}")
+    @DeleteMapping("/deleteAPost/{id}")
     public String deletePost(@PathVariable ("id") Long postId){
         postService.deletePost(postId);
         return "Post deletion successful";

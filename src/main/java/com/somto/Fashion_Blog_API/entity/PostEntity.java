@@ -32,21 +32,21 @@ public class PostEntity {
     @CreationTimestamp
     private LocalDateTime createdDate;
 
-//    @CreationTimestamp
-//    private LocalDateTime modifiedDate;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false) // CORRECT: A user can have many posts, One comment can't be owned by many users
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @JsonIgnore
     private UserEntity user;
 
-    @ManyToOne(optional = false)
+    @ManyToMany(mappedBy = "posts") // ManyToOne -> ManyToMany
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     @JsonIgnore
-    private CategoryEntity category;
+    private List<CategoryEntity> category; // made a collection
 
+    // CORRECT: One post can have many likes, a like can't be owned by many posts
     @OneToMany(mappedBy = "posts",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<LikeEntity> likedItems;
 
+    // CORRECT: One post can have many comments, a comment can't be owned by many posts
     @OneToMany(mappedBy = "posts",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CommentEntity> comments;
 

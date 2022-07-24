@@ -5,7 +5,6 @@ import com.somto.Fashion_Blog_API.entity.CategoryEntity;
 import com.somto.Fashion_Blog_API.entity.PostEntity;
 import com.somto.Fashion_Blog_API.entity.UserEntity;
 import com.somto.Fashion_Blog_API.enums.UserRole;
-import com.somto.Fashion_Blog_API.exceptions.*;
 import com.somto.Fashion_Blog_API.exceptions.CategoryNotFoundException;
 import com.somto.Fashion_Blog_API.exceptions.EmptyListException;
 import com.somto.Fashion_Blog_API.exceptions.PermissionDeniedException;
@@ -37,28 +36,41 @@ public class PostServiceImpl implements PostService {
     private final SessionUtils sessionUtils;
 
 
-
     @Override
-    public void createPost(PostDto postDto, Long categoryId) {
+    public void createPost(PostDto postDto) {
+        List<Long> categoriesId = postDto.getCategoryIds();
         Long id = sessionUtils.getLoggedInUser();
         UserEntity user = sessionUtils.findUserById(id);
 
         if(!user.getUserRole().equals(UserRole.ADMIN))
             throw new PermissionDeniedException("You do not have the permission to access this page");
-        CategoryEntity category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new CategoryNotFoundException("This category is not available"));
+
+        List<CategoryEntity> categoryEntities = new ArrayList<>();
+
+        for (Long categoryId : categoriesId) {
+            CategoryEntity category = categoryRepository.findById(categoryId)
+                    .orElseThrow(() -> new CategoryNotFoundException("This category is not available"));
+            categoryEntities.add(category);
+        }
+
+
         PostEntity post = PostEntity.builder()
                 .title(postDto.getTitle())
                 .description(postDto.getDescription())
-                .category(category)
+                .category(categoryEntities) // category -> category(categoryEntities)
                 .likedItems(new ArrayList<>())
                 .comments(new ArrayList<>())
                 .user(user)
                 .build();
         postRepository.save(post);
 
-        category.getPosts().add(post);
-        categoryRepository.save(category);
+        for (CategoryEntity categoryEntity : categoryEntities) {
+            categoryEntity.getPosts().add(post);
+        }
+
+        categoryRepository.saveAll(categoryEntities);
+
+//        category.getPosts().add(post);
     }
 
 //    @Override

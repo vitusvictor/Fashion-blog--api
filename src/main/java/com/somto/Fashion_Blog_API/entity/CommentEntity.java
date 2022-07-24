@@ -23,13 +23,11 @@ public class CommentEntity {
     @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime createdDate;
-//    @CreationTimestamp
-//    private LocalDateTime modifiedDate;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false) // CORRECT: A user can have many comments, a comment to a user
     @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private UserEntity user;
-    @ManyToOne
+    @ManyToOne //CORRECT: Many comments to one post, one post to many comment
     @JsonIgnore
     @JoinColumn(name = "post_id", referencedColumnName = "post_id")
     private PostEntity posts;

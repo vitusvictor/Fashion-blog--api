@@ -42,7 +42,6 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<LikeEntity> likedItems = new ArrayList<>();
-
 }
 
 //BeanUtils.copyProperties(taskdto, new task);

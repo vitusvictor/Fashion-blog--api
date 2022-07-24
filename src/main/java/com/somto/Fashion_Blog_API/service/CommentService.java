@@ -18,5 +18,5 @@ public interface CommentService {
 
     CommentEntity viewCommentById(Long postId);
 
-    List<CommentDto> viewAllcommentByPost(Long postId);
+    List<CommentDto> viewAllCommentsByPost(Long postId);
 }

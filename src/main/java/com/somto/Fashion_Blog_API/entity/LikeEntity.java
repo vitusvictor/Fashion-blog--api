@@ -30,8 +30,9 @@ public class LikeEntity implements Serializable {
     @ManyToOne(optional = false)
     @JsonIgnore
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private  UserEntity user;
+    private UserEntity user;
 
     @CreationTimestamp
     private LocalDateTime timeLiked;
+    // consider including identity of the liker
 }
