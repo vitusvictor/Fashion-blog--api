@@ -37,7 +37,7 @@ public class PostEntity {
     @JsonIgnore
     private UserEntity user;
 
-    @ManyToMany(mappedBy = "posts") // ManyToOne -> ManyToMany
+    @ManyToMany // ManyToOne -> ManyToMany
     @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     @JsonIgnore
     private List<CategoryEntity> category; // made a collection
