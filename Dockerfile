@@ -1,4 +1,4 @@
-FROM adoptopenjdk:17-jre-hotspot
+FROM adoptopenjdk/openjdk17:alpine-jre
 ADD target/fashion-blog-api-v1.jar fashion-blog-api-v1.jar
 ENTRYPOINT ["java", "-jar", "/fashion-blog-api-v1"]
 
