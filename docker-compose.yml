@@ -2,7 +2,6 @@ version: '3.8'
 services:
   app:
     container_name: springboot-postgresql
-    image: fashion-blog-api-v1
     build: ./
     ports:
       - "8080:8080"
@@ -16,3 +15,23 @@ services:
       - POSTGRES_PASSWORD=1234
       - POSTGRES_USER=postgres
       - POSTGRES_DB=blog-docker
+
+
+#        version: '3.1'
+#        services:
+#          app:
+#            container_name: springboot-postgresql
+#            image: docker-blog-image
+#            build: ./
+#            ports:
+#              - "8080:8080"
+#            depends_on:
+#              - clementinaDb
+#          clementinaDb:
+#            image: postgres
+#            ports:
+#              - "5433:5432"
+#            environment:
+#              - POSTGRES_PASSWORD=postProgress
+#              - POSTGRES_USER=postgres
+#              - POSTGRES_DB=dockerBlogDB
