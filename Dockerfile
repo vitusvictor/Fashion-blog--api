@@ -1,5 +1,5 @@
 FROM adoptopenjdk/openjdk11:alpine-jre
-ADD target/fashion-blog-api-v1.jar fashion-blog-api-v1.jar
+ADD target/fashion-blog-api-v1.jar app.jar
 ENTRYPOINT ["java", "-jar", "/fashion-blog-api-v1"]
 
 #ARG JAR_FILE=*.jar
